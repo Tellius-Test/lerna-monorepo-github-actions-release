@@ -11,3 +11,7 @@ function tes2(){
 function tes3(){
     console.log("test")
 }
+
+function tes4(){
+    console.log("test")
+}
