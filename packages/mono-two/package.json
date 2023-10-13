@@ -1,5 +1,5 @@
 {
-  "name": "@tellius-test/mono-two",
+  "name": "@hics/mono-two",
   "version": "2.1.4",
   "description": "",
   "homepage": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release/tree/master/packages/mono-two/",
