@@ -1,18 +1,18 @@
 {
-  "name": "@prafullsingh37/mono-one",
+  "name": "@tellius-test/mono-one",
   "version": "2.1.4",
   "description": "",
-  "homepage": "https://github.com/prafullsingh37/lerna-monorepo-github-actions-release/tree/master/packages/mono-one/",
+  "homepage": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release/tree/master/packages/mono-one/",
   "bugs": {
-    "url": "https://github.com/prafullsingh37/lerna-monorepo-github-actions-release/issues"
+    "url": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/prafullsingh37/lerna-monorepo-github-actions-release.git",
+    "url": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release.git",
     "directory": "packages/mono-one"
   },
   "license": "MIT",
-  "author": "prafullsingh37",
+  "author": "Tellius-test",
   "files": [
     "bin/",
     "lib/",
