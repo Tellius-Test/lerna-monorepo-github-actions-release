@@ -8,3 +8,6 @@ function tes1(){
 function tes2(){
     console.log("test")
 }
+function tes3(){
+    console.log("test")
+}
