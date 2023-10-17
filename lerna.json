@@ -6,7 +6,7 @@
   "includeMergedTags": true,
   "command": {
     "publish": {
-      "registry": "https://npm.pkg.github.com"
+      "registry": "http://ec2-18-188-106-162.us-east-2.compute.amazonaws.com:4873/"
     }
   }
 }

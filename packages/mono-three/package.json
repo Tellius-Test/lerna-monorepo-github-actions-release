@@ -1,6 +1,6 @@
 {
-  "name": "@tellius-test/hics-mono-three",
-  "version": "3.0.0",
+  "name":  "@hics/mono-three",
+  "version": "4.0.0",
   "description": "",
   "homepage": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release/tree/master/packages/mono-three/",
   "bugs": {
@@ -25,8 +25,8 @@
   },
   "scripts": {},
   "dependencies": {
-    "@tellius-test/hics-mono-one": "^3.0.0",
-    "@tellius-test/hics-mono-two": "^3.0.0"
+    "@hics/mono-one": "^4.0.0",
+    "@hics/mono-two": "^4.0.0"
   },
   "publishConfig": {
     "access": "public"
