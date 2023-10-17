@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-          registry-url: 'http://ec2-18-188-106-162.us-east-2.compute.amazonaws.com:4873/'
+          registry-url: 'https://packagecloud.io/prafulltellius37/example-repo/npm/'
       - name: Git Identity
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -79,6 +79,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGECLOUD-USERNAME : prafulltellius37
+          PACKAGECLOUD-REPO : example-repo
+          PACKAGECLOUD-DISTRIB : node
+          PACKAGECLOUD-TOKEN : 29ff351a253ad62cbb741198d3b5e04158547db5ae2ab1a2
       - uses: actions/github-script@v4
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
