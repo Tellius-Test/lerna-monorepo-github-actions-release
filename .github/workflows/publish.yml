@@ -17,19 +17,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
-
-      - name: Install PNPM
-        uses: pnpm/action-setup@v2
+          node-version: 16
+          registry-url: https://npm.pkg.github.com/
+      - uses: pnpm/action-setup@v2
         with:
           version: 8
-
       - name: Install project dependencies
         run: pnpm install
 
@@ -38,7 +33,7 @@ jobs:
 
       - name: Publish packages to Artifactory
         run: |
-          # 5= Replace the Artifactory URL and repository details with your own.
+          # Replace the Artifactory URL and repository details with your own.
           ARTIFACTORY_URL="https://prafull.jfrog.io/artifactory/api/npm"
           ARTIFACTORY_REPO="npm"
           ARTIFACTORY_USERNAME="${{ secrets.ARTIFACTORY_USERNAME }}"
