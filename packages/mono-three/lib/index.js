@@ -12,3 +12,7 @@ function tes3(){
     console.log("test")
 }
 
+
+function test46(){
+    console.log("test")
+}
