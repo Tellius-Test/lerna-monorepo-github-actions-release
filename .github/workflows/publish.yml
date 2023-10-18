@@ -29,7 +29,7 @@ jobs:
 
       - name: Publish packages to Artifactory
         run: |
-          # Replace the Artifactory URL and repository details with your own.
+          # 5=Replace the Artifactory URL and repository details with your own.
           ARTIFACTORY_URL="https://prafull.jfrog.io/artifactory/api/npm"
           ARTIFACTORY_REPO="npm"
           ARTIFACTORY_USERNAME="${{ secrets.ARTIFACTORY_USERNAME }}"
