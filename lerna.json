@@ -6,7 +6,7 @@
   "includeMergedTags": true,
   "command": {
     "publish": {
-      "registry": "https://packagecloud.io/prafulltellius37/example-repo/npm/"
+      "registry": "https://prafull.jfrog.io/artifactory/api/npm/npm/"
     }
   }
 }
