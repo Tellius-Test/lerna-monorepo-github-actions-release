@@ -18,3 +18,8 @@ function test4(){
 function test45(){
     console.log("test")
 }
+
+
+function test5(){
+    console.log("test")
+}
