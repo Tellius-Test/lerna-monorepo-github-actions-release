@@ -16,13 +16,15 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node ${{ matrix.node_version }}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
-          registry-url: "http://ec2-18-188-106-162.us-east-2.compute.amazonaws.com:4873/"
+          node-version: 16
+          registry-url: https://prafull.jfrog.io/artifactory/api/npm
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Git Identity
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -31,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install
-        run: yarn install
+        run: pnpm install
       # Define ${CURRENT_VERSION}
       - name: Set Current Version
         run: |
