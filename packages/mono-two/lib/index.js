@@ -18,3 +18,7 @@ function test4(){
 function test47(){
     console.log("test")
 }
+
+function test5(){
+    console.log("tes adsas")
+}
