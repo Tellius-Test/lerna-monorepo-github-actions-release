@@ -28,9 +28,6 @@ jobs:
       - name: Install project dependencies
         run: pnpm install
 
-      - name: Build packages
-        run: pnpm build
-
       - name: Publish packages to Artifactory
         run: |
           # Replace the Artifactory URL and repository details with your own.
