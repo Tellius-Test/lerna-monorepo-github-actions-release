@@ -1,106 +1,41 @@
-name: publish
-on:
-  # When Release Pull Request is merged
-  pull_request:
-    branches:
-      - master
-    types: [closed]
+name: Publish to Artifactory
 
-permissions:
-  contents: write # for checkout and tag
-  pull-requests: write # for comments
-  packages: write # for publish
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
-    name: Publish
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v3
-        env:
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-      - name: Setup Node ${{ matrix.node_version }}
+
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 14
-          registry-url: "https://prafull.jfrog.io/artifactory/api/npm/npm/"
-      - name: Set CLI Config
-        run: jf npm-config --global=true --repo-resolve=yarn --repo-deploy=npm
-      - name: Git Identity
+
+      - name: Install PNPM
+        run: npm install -g pnpm
+
+      - name: Install project dependencies
+        run: pnpm install
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Publish packages to Artifactory
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+          # Replace the Artifactory URL and repository details with your own.
+          ARTIFACTORY_URL=" https://prafull.jfrog.io/artifactory/api/npm"
+          ARTIFACTORY_REPO="npm"
+          ARTIFACTORY_USERNAME="${{ secrets.ARTIFACTORY_USERNAME }}"
+          ARTIFACTORY_PASSWORD="${{ secrets.ARTIFACTORY_PASSWORD }}"
+          
+         npx lerna publish from-package --registry "$ARTIFACTORY_URL/$ARTIFACTORY_REPO" --access public --dist-tag latest --registry "$ARTIFACTORY_URL/$ARTIFACTORY_REPO" --username "$ARTIFACTORY_USERNAME" --password "$ARTIFACTORY_PASSWORD"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install
-        run: yarn install
-      # Define ${CURRENT_VERSION}
-      - name: Set Current Version
-        run: |
-          CURRENT_VERSION=$(node -p 'require("./lerna.json").version')
-          echo "CURRENT_VERSION=${CURRENT_VERSION}" >> $GITHUB_ENV
-      - name: Tag Check
-        id: tag_check
-        run: |
-          GET_API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/v${CURRENT_VERSION}"
-          http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
-            -H "Authorization: token ${GITHUB_TOKEN}")
-          if [ "$http_status_code" -ne "404" ] ; then
-            echo "::set-output name=exists_tag::true"
-          else
-            echo "::set-output name=exists_tag::false"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Git Tag
-        if: steps.tag_check.outputs.exists_tag == 'false'
-        uses: pkgdeps/git-tag-action@v2
-        with:
-          version: ${{ env.CURRENT_VERSION }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repo: ${{ github.repository }}
-          git_commit_sha: ${{ github.sha }}
-          git_tag_prefix: "v"
-      - name: Create Release
-        id: create_release
-        if: steps.tag_check.outputs.exists_tag == 'false' && github.event.pull_request.merged == true
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ env.CURRENT_VERSION }}
-          # Copy Pull Request's title and body to Release Note
-          release_name: ${{ github.event.pull_request.title }}
-          body: |
-            ${{ github.event.pull_request.body }}
-          draft: false
-          prerelease: false
-      - name: Publish
-        run: |
-           yarn lerna publish from-package --yes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish Build info With JFrog CLI
-        run: |
-          # Collect environment variables for the build
-          jf rt build-collect-env
-          # Collect VCS details from git and add them to the build
-          jf rt build-add-git
-          # Publish build info
-          jf rt build-publish
-      - uses: actions/github-script@v4
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'https://github.com/${{ github.repository }}/releases/tag/v${{ env.CURRENT_VERSION }} is released 🎉'
-            })
+          CI: true
+        # Continue to add this step for each package that needs to be published.
