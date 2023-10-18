@@ -36,6 +36,6 @@ jobs:
           ARTIFACTORY_USERNAME="${{ secrets.ARTIFACTORY_USERNAME }}"
           ARTIFACTORY_PASSWORD="${{ secrets.ARTIFACTORY_PASSWORD }}"
 
-          pnpm lerna publish from-package --yes"
+          pnpm lerna publish from-package --yes
         env:
           CI: true
