@@ -1,0 +1,11 @@
+{
+  "name": "test-packages",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@hics/mono-one": "^4.0.1",
+    "@hics/mono-two": "^4.0.1"
+  }
+}
