@@ -30,12 +30,11 @@ jobs:
       - name: Publish packages to Artifactory
         run: |
           # Replace the Artifactory URL and repository details with your own.
-          ARTIFACTORY_URL=" https://prafull.jfrog.io/artifactory/api/npm"
+          ARTIFACTORY_URL="https://prafull.jfrog.io/artifactory/api/npm"
           ARTIFACTORY_REPO="npm"
           ARTIFACTORY_USERNAME="${{ secrets.ARTIFACTORY_USERNAME }}"
           ARTIFACTORY_PASSWORD="${{ secrets.ARTIFACTORY_PASSWORD }}"
           
-         npx lerna publish from-package --registry "$ARTIFACTORY_URL/$ARTIFACTORY_REPO" --access public --dist-tag latest --registry "$ARTIFACTORY_URL/$ARTIFACTORY_REPO" --username "$ARTIFACTORY_USERNAME" --password "$ARTIFACTORY_PASSWORD"
+          pnpm lerna publish from-package --registry "$ARTIFACTORY_URL/$ARTIFACTORY_REPO" --access public --dist-tag latest --registry "$ARTIFACTORY_URL/$ARTIFACTORY_REPO" --username "$ARTIFACTORY_USERNAME" --password "$ARTIFACTORY_PASSWORD"
         env:
           CI: true
-        # Continue to add this step for each package that needs to be published.
