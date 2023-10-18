@@ -13,3 +13,8 @@ function tes2(){
 function test4(){
     console.log("test")
 }
+
+
+function test45(){
+    console.log("test")
+}
