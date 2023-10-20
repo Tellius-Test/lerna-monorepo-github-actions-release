@@ -1,12 +1,12 @@
 name: publish
 
 on:
-  # When a Release Pull Request is merged
+  # When Release Pull Request is merged
   pull_request:
     branches:
-      - main
-    types:
-      - closed
+      - master
+    types: [closed]
+
 
 jobs:
   publish:
