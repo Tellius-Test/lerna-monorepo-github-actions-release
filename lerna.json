@@ -6,7 +6,7 @@
   "includeMergedTags": true,
   "command": {
     "publish": {
-      "registry": "https://prafull.jfrog.io/artifactory/api/npm/npm/"
+      "registry": "http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-hosted/"
     }
   }
 }
