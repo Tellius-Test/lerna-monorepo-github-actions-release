@@ -3,7 +3,7 @@ name: publish
 on:
   # When Release Pull Request is merged
   pull_request:
-    types: [opened,reopened,synchronize,edited]
+    types: [opened, reopened, synchronize, edited]
 
 jobs:
   publish:
@@ -81,7 +81,7 @@ jobs:
           prerelease: false
 
       - name: Publish packages to Sonatype
-        run: pnpm lerna publish from-package --yes
+        run: pnpm lerna publish from-package --yes --registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-hosted/
         env:
           CI: true
 
