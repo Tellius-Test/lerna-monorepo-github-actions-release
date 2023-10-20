@@ -65,11 +65,6 @@ jobs:
           git_commit_sha: ${{ github.sha }}
           git_tag_prefix: "v"
 
-      - name: Authenticate with Nexus Sonatype
-        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/:_authToken=$SONATYPE_PASSWORD" >> ~/.npmrc
-        env:
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-
       - name: Create Release
         id: create_release
         if: steps.tag_check.outputs.exists_tag == 'false' && github.event.pull_request.merged == true
