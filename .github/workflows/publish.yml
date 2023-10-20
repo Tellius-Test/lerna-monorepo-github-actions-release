@@ -49,12 +49,12 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
 
       - name: Set Custom Registry
-        run: npm config set registry http://your-nexus-host:8081/repository/npm-group/
+        run: npm config set registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/
         env:
           NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
 
       - name: Authenticate with Nexus Sonatype
-        run: echo "//your-nexus-host:8081/repository/npm-group/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
         env:
           NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
 
