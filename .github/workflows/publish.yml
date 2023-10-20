@@ -84,8 +84,7 @@ jobs:
           prerelease: false
 
       - name: Publish packages to Sonatype
-        run: |
-          pnpm lerna publish from-package --yes --registry https://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-group/
+        run: lerna publish from-package --yes
         env:
           CI: true
 
