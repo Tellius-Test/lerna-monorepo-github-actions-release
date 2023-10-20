@@ -66,7 +66,7 @@ jobs:
           git_tag_prefix: "v"
 
       - name: Authenticate with Nexus Sonatype
-        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-group/:_authToken=$SONATYPE_PASSWORD" >> ~/.npmrc
+        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/:_authToken=$SONATYPE_PASSWORD" >> ~/.npmrc
         env:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
 
