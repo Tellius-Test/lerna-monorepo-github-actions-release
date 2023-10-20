@@ -65,7 +65,7 @@ jobs:
           git_tag_prefix: "v"
 
       - name: Authenticate with Nexus Sonatype
-        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-hosted/:_authToken=$SONATYPE_PASSWORD" >> ~/.npmrc
+        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-group/:_authToken=$SONATYPE_PASSWORD" >> ~/.npmrc
         env:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
 
@@ -83,9 +83,15 @@ jobs:
           prerelease: false
 
       - name: Publish packages to Sonatype
-        run: pnpm lerna publish from-package --yes --registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-hosted/
+        run: pnpm lerna publish from-package --yes --registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-group/
         env:
           CI: true
+        with:
+          serverUrl: http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/
+          username: admin
+          password: Tellius123@
+          format: npm
+          repository: npm-group
 
       - name: Notify Release
         uses: actions/github-script@v4
