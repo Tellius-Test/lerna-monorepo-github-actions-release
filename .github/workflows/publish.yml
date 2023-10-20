@@ -3,7 +3,9 @@ name: publish
 on:
   # When Release Pull Request is merged
   pull_request:
-    types: [opened, reopened, synchronize, edited]
+    branches:
+      - master
+    types: [closed]
 
 jobs:
   publish:
