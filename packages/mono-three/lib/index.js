@@ -13,14 +13,3 @@ function tes3(){
 }
 
 
-function test46(){
-    console.log("test")
-}
-
-function test5(){
-    console.log("testm f")
-}
-
-function test53(){
-    console.log("test")
-}
