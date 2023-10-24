@@ -1,6 +1,6 @@
 {
-  "name":  "@hics/mono-one",
-  "version": "4.0.2",
+  "name": "@hics/mono-one",
+  "version": "2.1.5",
   "description": "",
   "homepage": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release/tree/master/packages/mono-one/",
   "bugs": {
