@@ -80,7 +80,7 @@ jobs:
       - name: Publish packages to Sonatype
         run: |
           export CI=true
-          pnpm lerna publish from-package --yes --format=npm --registry=http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/  
+          pnpm lerna publish from-package --yes --registry=http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/
         env:
           CI: true
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
