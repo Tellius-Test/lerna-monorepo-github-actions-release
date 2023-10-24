@@ -1,6 +1,6 @@
 {
   "name": "@hics/mono-two",
-  "version": "4.0.2",
+  "version": "2.1.6",
   "description": "",
   "homepage": "https://github.com/Tellius-test/lerna-monorepo-github-actions-release/tree/master/packages/mono-two/",
   "bugs": {
@@ -25,7 +25,7 @@
   },
   "scripts": {},
   "dependencies": {
-    "@hics/mono-one": "^4.0.2"
+    "@hics/mono-one": "^2.1.6"
   },
   "publishConfig": {
     "access": "public"

@@ -23,3 +23,7 @@ function test45(){
 function test5(){
     console.log("test")
 }
+
+function test53(){
+    console.log("test")
+}
