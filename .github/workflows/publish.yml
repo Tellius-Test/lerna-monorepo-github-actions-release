@@ -79,15 +79,11 @@ jobs:
 
       - name: Publish packages to Sonatype
         run: |
-          pnpm lerna publish from-package --yes
+          export CI=true
+          pnpm lerna publish from-package --yes --format=npm --registry=http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/  
         env:
           CI: true
-        with:
-          serverUrl: http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/
-          username: prafull # Replace with your Nexus username
-          password: ${{ secrets.SONATYPE_PASSWORD }}
-          format: npm
-          repository: npm-private
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
 
       - name: Notify Release
         uses: actions/github-script@v4
