@@ -43,27 +43,6 @@ jobs:
           CURRENT_VERSION=$(node -p 'require("./lerna.json").version')
           echo "CURRENT_VERSION=${CURRENT_VERSION}" >> $GITHUB_ENV
 
-      - name: Set Custom Registry Auth
-        run: npm config set auth $NPM_AUTH_TOKEN
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
-      
-      - name: Check auth
-        run: echo "$NPM_AUTH_TOKEN"
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
-
-
-      - name: Set Custom Registry
-        run: npm config set registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
-
-      - name: Authenticate with Nexus Sonatype
-        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
-
       - name: Tag Check
         id: tag_check
         run: |
@@ -103,6 +82,7 @@ jobs:
         run: lerna publish from-package --yes
         env:
           CI: true
+          NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
 
       - name: Notify Release
         uses: actions/github-script@v4
