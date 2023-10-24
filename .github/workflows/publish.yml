@@ -31,7 +31,7 @@ jobs:
           npm config set @hics:registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-group/
 
       - name: Create .npmrc with Secret
-        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/:_authToken=NpmToken.b0633eea-30f3-38ce-ac45-0b64ea5f1caa" > .npmrc
+        run: echo "//ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/:_authToken=NpmToken.b0633eea-30f3-38ce-ac45-0b64ea5f1caa" >> .npmrc
 
       - name: List .npmrc
         run: npm config list
