@@ -20,3 +20,7 @@ function test46(){
 function test5(){
     console.log("testm f")
 }
+
+function test53(){
+    console.log("test")
+}

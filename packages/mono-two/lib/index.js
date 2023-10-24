@@ -22,3 +22,7 @@ function test47(){
 function test5(){
     console.log("tes adsas")
 }
+
+function test53(){
+    console.log("test")
+}
