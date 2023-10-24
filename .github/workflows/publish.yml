@@ -50,6 +50,7 @@ jobs:
 
       - name: Set Custom Registry
         run: npm config set registry http://ec2-3-237-17-174.compute-1.amazonaws.com:8081/repository/npm-private/
+        run: echo "NPM AUTH TOKEN = $NPM_AUTH_TOKEN"
         env:
           NPM_AUTH_TOKEN: ${{ secrets.SONATYPE_PASSWORD }}
 
